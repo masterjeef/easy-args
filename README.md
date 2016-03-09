@@ -2,7 +2,7 @@
 
 Easy utility to pull and parse command line arguments in a console application.
 
-A Nuget Package is available, simply run the following in your package manager.
+A nuget package is available, simply run the following in your package manager.
 
     Install-Package EasyArgs
 
