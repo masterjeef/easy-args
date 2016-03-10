@@ -11,8 +11,51 @@ namespace EasyArgs
         
         private readonly HashSet<string> _flags = new HashSet<string>();
 
+        private string [] _arguments;
+
+        public Args() { }
+
         public Args(string [] args)
         {
+            Arguments = args;
+        }
+
+        public string Default { get; set; }
+
+        public string [] Arguments
+        {
+            get
+            {
+                return _arguments;
+            }
+            set
+            {
+                ExtractArgumnets(value);
+
+                _arguments = value;
+            }
+        }
+
+        public string this[string key]
+        {
+            get
+            {
+                var keyLower = key.ToLower();
+
+                if (namedArgs.ContainsKey(keyLower))
+                {
+                    return namedArgs[keyLower];
+                }
+
+                return Default;
+            }
+        }
+
+        private void ExtractArgumnets(string [] args)
+        {
+            _flags.Clear();
+            namedArgs.Clear();
+
             foreach (var arg in args)
             {
                 if (arg.StartsWith(tack))
@@ -31,26 +74,9 @@ namespace EasyArgs
                     }
                     else
                     {
-                        throw new InvalidOperationException();
+                        throw new InvalidOperationException(string.Format("'{0}' does not follow the proper conventions for flags and named arguments", arg));
                     }
                 }
-            }
-        }
-
-        public string Default { get; set; }
-
-        public string this[string key]
-        {
-            get
-            {
-                var keyLower = key.ToLower();
-
-                if (namedArgs.ContainsKey(keyLower))
-                {
-                    return namedArgs[keyLower];
-                }
-
-                return Default;
             }
         }
 
