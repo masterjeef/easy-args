@@ -69,5 +69,26 @@ namespace Testing
 
             Assert.True(args.HasFlag("F"));
         }
+
+        [Fact]
+        public void Default_should_be_returned_when_the_argument_is_not_present()
+        {
+            var arguments = new[] {
+                "Hello=World",
+                "-f",
+                "Environment=Development",
+                "-t"
+            };
+
+            const string defaultArg = "default";
+
+            var args = new Args
+            {
+                Arguments = arguments,
+                Default = defaultArg
+            };
+
+            Assert.Equal(args["DoesNotExist"], defaultArg);
+        }
     }
 }
