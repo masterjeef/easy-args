@@ -27,7 +27,7 @@ namespace Testing
             };
 
             Assert.NotNull(args["Hello"]);
-            Assert.Equal(args["Hello"], "World");
+            Assert.Equal(args["Hello"].Value, "World");
         }
         
         [Fact]
@@ -65,7 +65,7 @@ namespace Testing
             };
 
             Assert.NotNull(args["hello"]);
-            Assert.Equal(args["hello"], "World");
+            Assert.Equal(args["hello"].Value, "World");
 
             Assert.True(args.HasFlag("F"));
         }
@@ -88,7 +88,97 @@ namespace Testing
                 Default = defaultArg
             };
 
-            Assert.Equal(args["DoesNotExist"], defaultArg);
+            Assert.Equal(args["DoesNotExist"].Value, defaultArg);
+        }
+
+        [Fact]
+        public void AsInt_should_parse_the_argument_to_int()
+        {
+            var arguments = new[] {
+                "Integer=3"
+            };
+
+            const string defaultArg = "default";
+
+            var args = new Args
+            {
+                Arguments = arguments,
+                Default = defaultArg
+            };
+
+            Assert.Equal(args["Integer"].AsInt(), 3);
+        }
+
+        [Fact]
+        public void AsDouble_should_parse_the_argument_to_double()
+        {
+            var arguments = new[] {
+                "Double=3.14"
+            };
+
+            const string defaultArg = "default";
+
+            var args = new Args
+            {
+                Arguments = arguments,
+                Default = defaultArg
+            };
+
+            Assert.Equal(args["Double"].AsDouble(), 3.14);
+        }
+
+        [Fact]
+        public void AsDecimal_should_parse_the_argument_to_decimal()
+        {
+            var arguments = new[] {
+                "Decimal=22.8983"
+            };
+
+            const string defaultArg = "default";
+
+            var args = new Args
+            {
+                Arguments = arguments,
+                Default = defaultArg
+            };
+
+            Assert.Equal(args["Decimal"].AsDecimal(), (decimal)22.8983);
+        }
+
+        [Fact]
+        public void AsBool_should_parse_the_argument_to_bool()
+        {
+            var arguments = new[] {
+                "Bool=True"
+            };
+
+            const string defaultArg = "default";
+
+            var args = new Args
+            {
+                Arguments = arguments,
+                Default = defaultArg
+            };
+
+            Assert.Equal(args["Bool"].AsBool(), true);
+        }
+
+        [Fact]
+        public void AsDateTime_should_parse_the_argument_to_DateTime()
+        {
+            var arguments = new[] {
+                "Date=03/11/2016"
+            };
+
+            const string defaultArg = "default";
+
+            var args = new Args
+            {
+                Arguments = arguments,
+                Default = defaultArg
+            };
+
+            Assert.Equal(args["Date"].AsDateTime(), new DateTime(2016, 3, 11));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasyArgs.Models;
+using System;
 using System.Collections.Generic;
 
 namespace EasyArgs
@@ -7,7 +8,7 @@ namespace EasyArgs
     {
         private const string tack = "-";
 
-        private readonly Dictionary<string, string> namedArgs = new Dictionary<string, string>();
+        private readonly Dictionary<string, Argument> namedArgs = new Dictionary<string, Argument>();
         
         private readonly HashSet<string> _flags = new HashSet<string>();
 
@@ -36,18 +37,18 @@ namespace EasyArgs
             }
         }
 
-        public string this[string key]
+        public Argument this[string name]
         {
             get
             {
-                var keyLower = key.ToLower();
+                var keyLower = name.ToLower();
 
                 if (namedArgs.ContainsKey(keyLower))
                 {
                     return namedArgs[keyLower];
                 }
 
-                return Default;
+                return new Argument { Name = name, Value = Default };
             }
         }
 
@@ -70,7 +71,9 @@ namespace EasyArgs
 
                     if (split.Length == 2)
                     {
-                        namedArgs[split[0].ToLower()] = split[1];
+                        var argument = new Argument { Name = split[0], Value = split[1] };
+
+                        namedArgs[argument.Name.ToLower()] = argument;
                     }
                     else
                     {
