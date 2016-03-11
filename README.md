@@ -23,6 +23,26 @@ In our application, we would use EasyArgs like the following :
         
     }
 
+## Object Initialization Works Too
+
+Let's use the following command as an example
+    
+    Application Username=Iateyourcookie
+
+In our application, we would use EasyArgs like the following :
+
+    static void Main(string[] args)
+    {
+    
+        var easyArgs = new Args
+        {
+            Arguments = args
+        };
+
+        var email = easyArgs["Username"].Value;
+        
+    }
+
 ## Flags
 
 EasyArgs also supports flags, take the following command for example
@@ -36,7 +56,10 @@ How to detect flags in the code
     static void Main(string[] args)
     {
     
-        var easyArgs = new Args(args);
+        var easyArgs = new Args
+        {
+            Arguments = args
+        };
 
         var hasFlag = easyArgs.HasFlag("d");
         
@@ -61,7 +84,10 @@ How to parse an integer
     static void Main(string[] args)
     {
     
-        var easyArgs = new Args(args);
+        var easyArgs = new Args
+        {
+            Arguments = args
+        };
 
         var kidneyCount = easyArgs["KidneyCount"].AsInt();
     }
