@@ -9,38 +9,38 @@ A nuget package is available, simply run the following in your package manager.
 ## Named Arguments
 
 Let's use the following command as an example
-    
+
     Application Email=git@er.dun
 
 In our application, we would use EasyArgs like the following :
 
     static void Main(string[] args)
     {
-    
+
         var easyArgs = new Args(args);
 
         var email = easyArgs["Email"].Value;
-        
+
     }
 
 ## Object Initialization Works Too
 
-Let's use the following command as an example
-    
+Here is another command
+
     Application Username=Iateyourcookie
 
 In our application, we would use EasyArgs like the following :
 
     static void Main(string[] args)
     {
-    
+
         var easyArgs = new Args
         {
             Arguments = args
         };
 
         var email = easyArgs["Username"].Value;
-        
+
     }
 
 ## Flags
@@ -48,23 +48,23 @@ In our application, we would use EasyArgs like the following :
 EasyArgs also supports flags, take the following command for example
 
     Application Email=git@er.dun -d
-    
+
 The `-d` flag can be placed anywhere in the command and must be prepended with `-`
 
 How to detect flags in the code
-    
+
     static void Main(string[] args)
     {
-    
+
         var easyArgs = new Args
         {
             Arguments = args
         };
 
         var hasFlag = easyArgs.HasFlag("d");
-        
+
     }
-    
+
 ## Parsing Named Arguments
 
 Types currently supported :
@@ -75,15 +75,15 @@ Types currently supported :
 * bool _(AsBool())_
 * DateTime _(AsDateTime())_
 
-Another example 
+Another example
 
     Application Email=git@er.dun -d KidneyCount=3
-    
+
 How to parse an integer
-    
+
     static void Main(string[] args)
     {
-    
+
         var easyArgs = new Args
         {
             Arguments = args
