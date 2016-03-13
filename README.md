@@ -94,11 +94,11 @@ How to parse an integer
 
 ## Default Arguments
 
-By default EasyArgs will return null for missing argument, let's use this command again.
+By default EasyArgs will return null for a missing argument, let's use this command again.
 
     Application Hello=World
 
-The default value can also be set.
+The default value can also be set like the following.
 
     static void Main(string[] args)
     {
