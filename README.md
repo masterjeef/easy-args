@@ -8,7 +8,7 @@ A nuget package is available, simply run the following in your package manager.
 
 ## Named Arguments
 
-Let's use the following command as an example
+Let's use the following command as an example.
 
     Application Email=git@er.dun
 
@@ -25,7 +25,7 @@ In our application, we would use EasyArgs like the following :
 
 ## Object Initialization Works Too
 
-Here is another command
+Another example with object Initialization
 
     Application Username=Iateyourcookie
 
@@ -47,11 +47,11 @@ In our application, we would use EasyArgs like the following :
 
 EasyArgs also supports flags, take the following command for example
 
-    Application Email=git@er.dun -d
+    Application ChickensName=MotherClucker -d
 
 The `-d` flag can be placed anywhere in the command and must be prepended with `-`
 
-How to detect flags in the code
+How to detect flags in the code :
 
     static void Main(string[] args)
     {
@@ -90,4 +90,24 @@ How to parse an integer
         };
 
         var kidneyCount = easyArgs["KidneyCount"].AsInt();
+    }
+
+## Default Arguments
+
+By default EasyArgs will return null for missing argument, let's use this command again.
+
+    Application Hello=World
+
+The default value can also be set.
+
+    static void Main(string[] args)
+    {
+
+        var easyArgs = new Args
+        {
+            Arguments = args,
+            Default = "default"
+        };
+
+        var shouldBeDefault = easyArgs["GoodBye"];
     }
