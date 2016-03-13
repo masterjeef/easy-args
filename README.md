@@ -1,6 +1,6 @@
 # Easy Args
 
-Easy utility to pull and parse command line arguments in a console application.
+The easiest utility to pull and parse command line arguments.
 
 A nuget package is available, simply run the following in your package manager.
 
@@ -22,6 +22,10 @@ In our application, we would use EasyArgs like the following :
         var email = easyArgs["Email"].Value;
 
     }
+
+The number of arguments, and the order of the arguments does not matter. Also, accessing named arguments is not case sensitive. The following would also work for the example above.
+
+      var email = easyArgs["email"].Value;
 
 ## Object Initialization Works Too
 
