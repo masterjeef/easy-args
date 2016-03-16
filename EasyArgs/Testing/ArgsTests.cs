@@ -27,7 +27,7 @@ namespace Testing
             };
 
             Assert.NotNull(args["Hello"]);
-            Assert.Equal(args["Hello"].Value, "World");
+            Assert.Equal(args["Hello"], "World");
         }
         
         [Fact]
@@ -65,7 +65,7 @@ namespace Testing
             };
 
             Assert.NotNull(args["hello"]);
-            Assert.Equal(args["hello"].Value, "World");
+            Assert.Equal(args["hello"], "World");
 
             Assert.True(args.HasFlag("F"));
         }
@@ -88,7 +88,7 @@ namespace Testing
                 Default = defaultArg
             };
 
-            Assert.Equal(args["DoesNotExist"].Value, defaultArg);
+            Assert.Equal(args["DoesNotExist"], defaultArg);
         }
 
         [Fact]
@@ -106,7 +106,9 @@ namespace Testing
                 Default = defaultArg
             };
 
-            Assert.Equal(args["Integer"].AsInt(), 3);
+            int arg = args["Integer"];
+
+            Assert.Equal(arg, 3);
         }
 
         [Fact]
@@ -124,7 +126,9 @@ namespace Testing
                 Default = defaultArg
             };
 
-            Assert.Equal(args["Double"].AsDouble(), 3.14);
+            double arg = args["Double"];
+
+            Assert.Equal(arg, 3.14);
         }
 
         [Fact]
@@ -142,7 +146,9 @@ namespace Testing
                 Default = defaultArg
             };
 
-            Assert.Equal(args["Decimal"].AsDecimal(), (decimal)22.8983);
+            decimal arg = args["Decimal"];
+
+            Assert.Equal(arg, (decimal)22.8983);
         }
 
         [Fact]
@@ -160,7 +166,9 @@ namespace Testing
                 Default = defaultArg
             };
 
-            Assert.Equal(args["Bool"].AsBool(), true);
+            bool arg = args["Bool"];
+
+            Assert.Equal(arg, true);
         }
 
         [Fact]
@@ -178,7 +186,9 @@ namespace Testing
                 Default = defaultArg
             };
 
-            Assert.Equal(args["Date"].AsDateTime(), new DateTime(2016, 3, 11));
+            DateTime arg = args["Date"];
+
+            Assert.Equal(arg, new DateTime(2016, 3, 11));
         }
     }
 }

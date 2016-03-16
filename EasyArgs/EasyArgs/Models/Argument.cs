@@ -6,30 +6,35 @@ namespace EasyArgs.Models
         public string Name { get; set; }
 
         public string Value { get; set; }
-
-        public int AsInt()
+        
+        public static implicit operator string(Argument arg)
         {
-            return Value == null ? default(int) : int.Parse(Value);
+            return arg.Value;
         }
 
-        public double AsDouble()
+        public static implicit operator int(Argument arg)
         {
-            return Value == null ? default(double) : double.Parse(Value);
+            return arg.Value == null ? default(int) : int.Parse(arg.Value);
         }
 
-        public decimal AsDecimal()
+        public static implicit operator double(Argument arg)
         {
-            return Value == null ? default(decimal) : decimal.Parse(Value);
+            return arg.Value == null ? default(double) : double.Parse(arg.Value);
         }
 
-        public bool AsBool()
+        public static implicit operator decimal(Argument arg)
         {
-            return Value == null ? default(bool) : bool.Parse(Value);
+            return arg.Value == null ? default(decimal) : decimal.Parse(arg.Value);
         }
 
-        public DateTime AsDateTime()
+        public static implicit operator bool(Argument arg)
         {
-            return Value == null ? default(DateTime) : DateTime.Parse(Value);
+            return arg.Value == null ? default(bool) : bool.Parse(arg.Value);
+        }
+
+        public static implicit operator DateTime(Argument arg)
+        {
+            return arg.Value == null ? default(DateTime) : DateTime.Parse(arg.Value);
         }
     }
 }
