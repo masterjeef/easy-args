@@ -19,13 +19,13 @@ In our application, we would use EasyArgs like the following :
 
         var easyArgs = new Args(args);
 
-        var email = easyArgs["Email"].Value;
+        var email = easyArgs["Email"];
 
     }
 
 The number of arguments, and the order of the arguments does not matter. Also, accessing named arguments is not case sensitive. The following would also work for the example above.
 
-      var email = easyArgs["email"].Value;
+      var email = easyArgs["email"];
 
 ## Object Initialization Works Too
 
@@ -43,7 +43,7 @@ In our application, we would use EasyArgs like the following :
             Arguments = args
         };
 
-        var email = easyArgs["Username"].Value;
+        var email = easyArgs["Username"];
 
     }
 
@@ -69,15 +69,15 @@ How to detect flags in the code :
 
     }
 
-## Parsing Named Arguments
+## Types
 
 Types currently supported :
 
-* int _(AsInt())_
-* double _(AsDouble())_
-* decimal _(AsDecimal())_
-* bool _(AsBool())_
-* DateTime _(AsDateTime())_
+* int
+* double
+* decimal
+* bool
+* DateTime
 
 Another example
 
@@ -93,7 +93,7 @@ How to parse an integer
             Arguments = args
         };
 
-        var kidneyCount = easyArgs["KidneyCount"].AsInt();
+        int kidneyCount = easyArgs["KidneyCount"];
     }
 
 ## Default Arguments

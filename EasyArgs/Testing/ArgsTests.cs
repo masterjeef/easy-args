@@ -25,7 +25,7 @@ namespace Testing
             {
                 Arguments = arguments
             };
-
+            
             Assert.NotNull(args["Hello"]);
             Assert.Equal(args["Hello"], "World");
         }
