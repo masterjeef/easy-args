@@ -23,7 +23,7 @@ In our application, we would use EasyArgs like the following :
 
     }
 
-The number of arguments, and the order of the arguments does not matter. Also, accessing named arguments is not case sensitive. The following would also work for the example above.
+The number of arguments, and the order of the arguments does not matter. Also, accessing named arguments and flags is not case sensitive. The following would have also worked for the example above.
 
       var email = easyArgs["email"];
 
@@ -81,7 +81,7 @@ Types currently supported :
 
 Another example
 
-    Application Email=git@er.dun -d KidneyCount=3
+    Application -d KidneyCount=3
 
 How to parse an integer
 
@@ -98,7 +98,7 @@ How to parse an integer
 
 ## Default Arguments
 
-By default EasyArgs will return null for a missing argument, let's use this command again.
+By default EasyArgs will return null for a missing argument, another example.
 
     Application Hello=World
 
@@ -112,6 +112,7 @@ The default value can also be set like the following.
             Arguments = args,
             Default = "default"
         };
-
+        
+        // returns "default" in this case
         var shouldBeDefault = easyArgs["GoodBye"];
     }
