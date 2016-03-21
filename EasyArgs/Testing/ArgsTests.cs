@@ -92,7 +92,7 @@ namespace Testing
         }
 
         [Fact]
-        public void AsInt_should_parse_the_argument_to_int()
+        public void Implicit_int_should_parse_the_argument_to_int()
         {
             var arguments = new[] {
                 "Integer=3"
@@ -112,7 +112,7 @@ namespace Testing
         }
 
         [Fact]
-        public void AsDouble_should_parse_the_argument_to_double()
+        public void Implicit_double_should_parse_the_argument_to_double()
         {
             var arguments = new[] {
                 "Double=3.14"
@@ -132,7 +132,7 @@ namespace Testing
         }
 
         [Fact]
-        public void AsDecimal_should_parse_the_argument_to_decimal()
+        public void Implicit_decimal_should_parse_the_argument_to_decimal()
         {
             var arguments = new[] {
                 "Decimal=22.8983"
@@ -152,7 +152,7 @@ namespace Testing
         }
 
         [Fact]
-        public void AsBool_should_parse_the_argument_to_bool()
+        public void Implicit_bool_should_parse_the_argument_to_bool()
         {
             var arguments = new[] {
                 "Bool=True"
@@ -172,7 +172,7 @@ namespace Testing
         }
 
         [Fact]
-        public void AsDateTime_should_parse_the_argument_to_DateTime()
+        public void Implicit_dateTime_should_parse_the_argument_to_DateTime()
         {
             var arguments = new[] {
                 "Date=03/11/2016"
@@ -189,6 +189,39 @@ namespace Testing
             DateTime arg = args["Date"];
 
             Assert.Equal(arg, new DateTime(2016, 3, 11));
+        }
+
+        [Fact]
+        public void Implicit_casting_for_null_arg_should_return_type_default()
+        {
+            var arguments = new[] {
+                "Integer=3"
+            };
+
+            var args = new Args
+            {
+                Arguments = arguments
+            };
+
+            int intArg = args["MissingArg"];
+
+            Assert.Equal(intArg, default(int));
+
+            double doubleArg = args["DoesNotExist"];
+
+            Assert.Equal(doubleArg, default(double));
+
+            bool boolArg = args["Nope"];
+
+            Assert.Equal(boolArg, default(bool));
+
+            decimal decimalArg = args["Gone"];
+
+            Assert.Equal(decimalArg, default(decimal));
+
+            DateTime dateTimeArg = args["Why?"];
+
+            Assert.Equal(dateTimeArg, default(DateTime));
         }
     }
 }
