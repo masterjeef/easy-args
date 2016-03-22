@@ -8,7 +8,7 @@ namespace EasyArgs
     {
         private const string tack = "-";
 
-        private readonly Dictionary<string, Argument> namedArgs = new Dictionary<string, Argument>();
+        private readonly Dictionary<string, Argument> _namedArgs = new Dictionary<string, Argument>();
         
         private readonly HashSet<string> _flags = new HashSet<string>();
 
@@ -43,9 +43,9 @@ namespace EasyArgs
             {
                 var keyLower = name.ToLower();
 
-                if (namedArgs.ContainsKey(keyLower))
+                if (_namedArgs.ContainsKey(keyLower))
                 {
-                    return namedArgs[keyLower];
+                    return _namedArgs[keyLower];
                 }
 
                 return new Argument { Name = name, Value = Default };
@@ -55,7 +55,7 @@ namespace EasyArgs
         private void ExtractArgumnets(string [] args)
         {
             _flags.Clear();
-            namedArgs.Clear();
+            _namedArgs.Clear();
 
             foreach (var arg in args)
             {
@@ -73,7 +73,7 @@ namespace EasyArgs
                     {
                         var argument = new Argument { Name = split[0], Value = split[1] };
 
-                        namedArgs[argument.Name.ToLower()] = argument;
+                        _namedArgs[argument.Name.ToLower()] = argument;
                     }
                     else
                     {
