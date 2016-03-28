@@ -2,6 +2,8 @@
 
 The easiest utility to pull and parse command line arguments.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/w7vwd418k6ltur9k?svg=true)](https://ci.appveyor.com/project/masterjeef/easy-args)
+
 A nuget package is available, simply run the following in your package manager.
 
     Install-Package EasyArgs
