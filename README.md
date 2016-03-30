@@ -10,7 +10,7 @@ A nuget package is available, simply run the following in your package manager.
 
 ## Named Arguments
 
-Let's use the following command as an example.
+Let's use the following command as an example. Application would be the exe that you are executing.
 
     Application Email=git@er.dun
 
@@ -97,6 +97,21 @@ How to parse an integer
 
         int kidneyCount = easyArgs["KidneyCount"];
     }
+
+## Beyond Main
+
+`Main(string[] args)` is not be the only place where we could use Easy Args. We could also do the following:
+
+    var command = "Hello=World -d KidneyCount=3 Username=Iateyourcookie Email=git@er.dun";
+    
+    string[] arguments = command.Split(' ');
+
+    var args = new Args
+    {
+        Arguments = arguments
+    };
+
+    string username = args["Username"];
 
 ## Default Arguments
 
