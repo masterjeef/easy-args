@@ -31,11 +31,11 @@ The number of arguments, and the order of the arguments does not matter. Also, a
 
 ## Object Initialization Works Too
 
-Another example with object Initialization
+Another example using object Initialization
 
     Application Username=Iateyourcookie
 
-In our application, we would use EasyArgs like the following :
+Within our application :
 
     static void Main(string[] args)
     {
@@ -98,9 +98,11 @@ How to parse an integer
         int kidneyCount = easyArgs["KidneyCount"];
     }
 
+Yes, it's that easy. EasyArgs utilizes implicit typing to parse the value to the requested type. If the string cannot be parsed to the requested type, then the implicit cast will throw an exception.
+
 ## Beyond Main
 
-`Main(string[] args)` is not be the only place where we could use Easy Args. We could also do the following:
+`Main(string[] args)` is not be the only place where we can use Easy Args. We can also do the following:
 
     var command = "Hello=World -d KidneyCount=3 Username=Iateyourcookie Email=git@er.dun";
     
@@ -115,7 +117,7 @@ How to parse an integer
 
 ## Default Arguments
 
-By default EasyArgs will return null for a missing argument, another example.
+By default EasyArgs will return null or default for a missing argument, another example.
 
     Application Hello=World
 
