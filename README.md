@@ -1,3 +1,5 @@
+![alt text](https://raw.githubusercontent.com/masterjeef/easy-args/master/easy-arg-icon.png "Easy Args")
+
 # Easy Args
 
 The easiest utility to pull and parse command line arguments.
