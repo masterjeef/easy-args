@@ -1,9 +1,5 @@
 ﻿using EasyArgs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Testing
@@ -37,7 +33,8 @@ namespace Testing
                 "Hello=World",
                 "-f",
                 "Environment=Development",
-                "-t"
+                "-t",
+                "-X"
             };
 
             var args = new Args
@@ -46,7 +43,28 @@ namespace Testing
             };
 
             Assert.True(args.HasFlag("f"));
+            Assert.True(args.HasFlag("x"));
             Assert.False(args.HasFlag("d"));
+        }
+
+        [Fact]
+        public void Flags_should_be_case_insensitive()
+        {
+            var arguments = new[] {
+                "Hello=World",
+                "-f",
+                "Environment=Development",
+                "-t",
+                "-X"
+            };
+
+            var args = new Args
+            {
+                Arguments = arguments
+            };
+            
+            Assert.True(args.HasFlag("x"));
+            Assert.True(args.HasFlag("X"));
         }
 
         [Fact]
@@ -77,6 +95,8 @@ namespace Testing
                 "Hello=World",
                 "-f",
                 "Environment=Development",
+                "Something=\"Another Param\"",
+                "AnotherTest===Test",
                 "-t"
             };
 
@@ -89,6 +109,46 @@ namespace Testing
             };
 
             Assert.Equal(args["DoesNotExist"], defaultArg);
+        }
+
+        [Fact]
+        public void Argument_parsing_should_handle_spaces()
+        {
+            var arguments = new[] {
+                "Hello=World",
+                "-f",
+                "Environment=Development",
+                "Something=\"Another Param\"",
+                "AnotherTest===Test",
+                "-t"
+            };
+            
+            var args = new Args
+            {
+                Arguments = arguments
+            };
+
+            Assert.Equal(args["Something"], "Another Param");
+        }
+
+        [Fact]
+        public void Argument_parsing_should_handle_equals()
+        {
+            var arguments = new[] {
+                "Hello=World",
+                "-f",
+                "Environment=Development",
+                "Something=\"Another Param\"",
+                "AnotherTest===Test",
+                "-t"
+            };
+            
+            var args = new Args
+            {
+                Arguments = arguments
+            };
+
+            Assert.Equal(args["AnotherTest"], "==Test");
         }
 
         [Fact]
@@ -175,7 +235,7 @@ namespace Testing
         public void Implicit_dateTime_should_parse_the_argument_to_DateTime()
         {
             var arguments = new[] {
-                "Date=03/11/2016"
+                "Date=03/11/2016",
             };
 
             const string defaultArg = "default";
@@ -187,7 +247,6 @@ namespace Testing
             };
 
             DateTime arg = args["Date"];
-
             Assert.Equal(arg, new DateTime(2016, 3, 11));
         }
 
@@ -222,6 +281,16 @@ namespace Testing
             DateTime dateTimeArg = args["Why?"];
 
             Assert.Equal(dateTimeArg, default(DateTime));
+        }
+
+        [Fact]
+        public void Args_string_constructor_should_poplate_the_args_dictionary()
+        {
+            var args = new Args("Hello=World -f Environment=Development Something=\"Another Param\" -t");
+
+            Assert.Equal(args["hello"], "World");
+            Assert.True(args.HasFlag("t"));
+            Assert.Equal(args["something"], "Another Param");
         }
     }
 }
