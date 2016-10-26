@@ -2,7 +2,7 @@
 
 # Easy Args
 
-The easiest utility to pull and parse command line arguments.
+The lightest .Net utility for processing command line arguments
 
 [![Build status](https://ci.appveyor.com/api/projects/status/w7vwd418k6ltur9k?svg=true)](https://ci.appveyor.com/project/masterjeef/easy-args)
 
@@ -27,7 +27,7 @@ In our application, we would use EasyArgs like the following :
 
     }
 
-The number of arguments, and the order of the arguments does not matter. Also, accessing named arguments and flags is not case sensitive. The following would have also worked for the example above.
+The number of arguments, and the order of the arguments does not matter. Also, accessing named arguments and flags is not case sensitive. The following would also work for the example above.
 
       var email = easyArgs["email"];
 

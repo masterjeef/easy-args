@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Easy Args")]
-[assembly: AssemblyDescription("The easiest utility for accessing command line arguments")]
+[assembly: AssemblyDescription("The lightest .Net utility for processing command line arguments")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jeff Linton")]
 [assembly: AssemblyProduct("EasyArgs")]
