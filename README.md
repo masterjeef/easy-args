@@ -107,13 +107,8 @@ Yes, it's that easy. EasyArgs utilizes implicit typing to parse the value to the
 `Main(string[] args)` is not be the only place where we can use Easy Args. We can also do the following:
 
     var command = "Hello=World -d KidneyCount=3 Username=Iateyourcookie Email=git@er.dun";
-    
-    string[] arguments = command.Split(' ');
 
-    var args = new Args
-    {
-        Arguments = arguments
-    };
+    var args = new Args(command);
 
     string username = args["Username"];
 

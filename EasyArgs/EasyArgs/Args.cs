@@ -37,7 +37,8 @@ namespace EasyArgs
             }
         }
 
-        public string ArgsString {
+        public string ArgsString
+        {
             set
             {
                 ExtractArgumnets(value);
