@@ -12,7 +12,7 @@ Run the following in your package manager to install the package.
 
 ## Named Arguments
 
-Let's use the following command as an example. Application would be the exe that you are executing.
+Let's use the following command as an example. `Application` below would be the exe that you are executing.
 
     Application Email=git@er.dun
 
