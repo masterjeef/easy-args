@@ -6,7 +6,7 @@ The lightest .Net utility for processing command line arguments
 
 [![Build status](https://ci.appveyor.com/api/projects/status/w7vwd418k6ltur9k?svg=true)](https://ci.appveyor.com/project/masterjeef/easy-args)
 
-A nuget package is available, simply run the following in your package manager.
+Run the following in your package manager to install the package.
 
     Install-Package EasyArgs
 
@@ -33,7 +33,7 @@ The number of arguments, and the order of the arguments does not matter. Also, a
 
 ## Object Initialization Works Too
 
-Another example using object Initialization
+Another example using object Initialization :
 
     Application Username=Iateyourcookie
 
@@ -53,13 +53,13 @@ Within our application :
 
 ## Flags
 
-EasyArgs also supports flags, take the following command for example
+EasyArgs also supports flags, take the following command for example :
 
     Application ChickensName=MotherClucker -d
 
 The `-d` flag can be placed anywhere in the command and must be prepended with `-`
 
-How to detect flags in the code :
+How to detect the presence of a flag in the code :
 
     static void Main(string[] args)
     {
@@ -73,7 +73,7 @@ How to detect flags in the code :
 
     }
 
-## Types
+## Handling Types
 
 Types currently supported :
 
@@ -83,11 +83,11 @@ Types currently supported :
 * bool
 * DateTime
 
-Another example
+Another example :
 
     Application -d KidneyCount=3
 
-How to parse an integer
+How to parse an integer :
 
     static void Main(string[] args)
     {
@@ -100,11 +100,11 @@ How to parse an integer
         int kidneyCount = easyArgs["KidneyCount"];
     }
 
-Yes, it's that easy. EasyArgs utilizes implicit typing to parse the value to the requested type. If the string cannot be parsed to the requested type, then the implicit cast will throw an exception.
+EasyArgs utilizes implicit typing to parse the value to the requested type. If the string cannot be parsed to the requested type, then an exception will be thrown.
 
 ## Beyond Main
 
-`Main(string[] args)` is not be the only place where we can use Easy Args. We can also do the following:
+`Main(string[] args)` is not be the only place where we can use Easy Args. We can also do the following :
 
     var command = "Hello=World -d KidneyCount=3 Username=Iateyourcookie Email=git@er.dun";
 
