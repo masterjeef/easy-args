@@ -57,7 +57,8 @@ namespace Testing
                 "-t",
                 "-X",
                 "-REINSTALL",
-                "-Update-Package"
+                "-Update-Package",
+                "--TwoTacks"
             };
 
             var args = new Args
@@ -69,10 +70,11 @@ namespace Testing
             Assert.True(args.HasFlag("T"));
             Assert.True(args.HasFlag("reinstall"));
             Assert.True(args.HasFlag("update-package"));
+            Assert.True(args.HasFlag("-TwoTacks"));
         }
 
         [Fact]
-        public void Arguments_and_flags_should_not_be_case_sensitive()
+        public void Arguments_should_not_be_case_sensitive()
         {
             var arguments = new[] {
                 "Hello=World",
@@ -86,10 +88,7 @@ namespace Testing
                 Arguments = arguments
             };
 
-            Assert.NotNull(args["hello"]);
             Assert.Equal(args["hello"], "World");
-
-            Assert.True(args.HasFlag("F"));
         }
 
         [Fact]
