@@ -55,7 +55,9 @@ namespace Testing
                 "-f",
                 "Environment=Development",
                 "-t",
-                "-X"
+                "-X",
+                "-REINSTALL",
+                "-Update-Package"
             };
 
             var args = new Args
@@ -64,7 +66,9 @@ namespace Testing
             };
             
             Assert.True(args.HasFlag("x"));
-            Assert.True(args.HasFlag("X"));
+            Assert.True(args.HasFlag("T"));
+            Assert.True(args.HasFlag("reinstall"));
+            Assert.True(args.HasFlag("update-package"));
         }
 
         [Fact]

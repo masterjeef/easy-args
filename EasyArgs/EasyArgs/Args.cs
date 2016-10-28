@@ -1,5 +1,7 @@
 ﻿using EasyArgs.Models;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -14,9 +16,9 @@ namespace EasyArgs
 
         private const string paramExpression = "(?<name>.*?)=(?<param>.+)";
 
-        private readonly Dictionary<string, Argument> _namedArgs = new Dictionary<string, Argument>();
-        
-        private readonly HashSet<string> _flags = new HashSet<string>();
+        private readonly Dictionary<string, Argument> _namedArgs = new Dictionary<string, Argument>(StringComparer.OrdinalIgnoreCase);
+
+        private readonly HashSet<string> _flags = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         
         public Args() { }
 
@@ -52,11 +54,9 @@ namespace EasyArgs
         {
             get
             {
-                var keyLower = name.ToLower();
-
-                if (_namedArgs.ContainsKey(keyLower))
+                if (_namedArgs.ContainsKey(name))
                 {
-                    return _namedArgs[keyLower];
+                    return _namedArgs[name];
                 }
 
                 return new Argument { Name = name, Value = Default };
@@ -69,7 +69,7 @@ namespace EasyArgs
 
             var regex = new Regex(paramExpression);
 
-            // Surrounds named argument values with double quotes
+            // Surrounds named argument values with double quotes in order to preserve whitespace
             foreach (var arg in args)
             {
                 var match = regex.Match(arg);
@@ -102,12 +102,12 @@ namespace EasyArgs
 
             foreach (var arg in ParseNamedArgs(args))
             {
-                _namedArgs[arg.Name.ToLower()] = arg;
+                _namedArgs[arg.Name] = arg;
             }
 
             foreach (var flag in ParseFlags(args))
             {
-                _flags.Add(flag.ToLower());
+                _flags.Add(flag);
             }
         }
 
@@ -147,7 +147,7 @@ namespace EasyArgs
         
         public bool HasFlag(string flag)
         {
-            return _flags.Contains(flag.ToLower());
+            return _flags.Contains(flag);
         }
     }
 }
