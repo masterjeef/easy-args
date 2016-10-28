@@ -6,7 +6,7 @@ The lightest .Net utility for processing command line arguments
 
 [![Build status](https://ci.appveyor.com/api/projects/status/w7vwd418k6ltur9k?svg=true)](https://ci.appveyor.com/project/masterjeef/easy-args)
 
-Run the following in your package manager to install the package.
+To install Easy Args, run the following command in the Package Manager Console
 
     Install-Package EasyArgs
 

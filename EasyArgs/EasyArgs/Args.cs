@@ -1,5 +1,6 @@
 ﻿using EasyArgs.Models;
 using System.Collections.Generic;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace EasyArgs
@@ -9,7 +10,9 @@ namespace EasyArgs
 
         private const string flagsExpression = "\\s*-(?<flag>[^\\s]+)";
 
-        private const string namedArgsExpression = "\\s*(?<name>[^\\s=]+)=((\"(?<valueQuoted>.+)\")|(?<value>([^\\s]+)))";
+        private const string namedArgsExpression = "\\s*(?<name>[^\\s=]+)=((\"(?<valueQuoted>.*?)\")|(?<value>([^\\s]+)))";
+
+        private const string paramExpression = "(?<name>.*?)=(?<param>.+)";
 
         private readonly Dictionary<string, Argument> _namedArgs = new Dictionary<string, Argument>();
         
@@ -62,7 +65,32 @@ namespace EasyArgs
 
         private void ExtractArgumnets(string [] args)
         {
-            var merged = string.Join(" ", args);
+            var builder = new StringBuilder();
+
+            var regex = new Regex(paramExpression);
+
+            // Surrounds named argument values with double quotes
+            foreach (var arg in args)
+            {
+                var match = regex.Match(arg);
+
+                if (match.Success)
+                {
+                    builder.Append(match.Groups["name"].Value);
+                    builder.Append("=");
+                    builder.Append("\"");
+                    builder.Append(match.Groups["param"].Value);
+                    builder.Append("\"");
+                }
+                else
+                {
+                    builder.Append(arg);
+                }
+
+                builder.Append(" ");
+            }
+
+            var merged = builder.ToString();
             
             ExtractArgumnets(merged);
         }

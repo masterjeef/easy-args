@@ -95,7 +95,6 @@ namespace Testing
                 "Hello=World",
                 "-f",
                 "Environment=Development",
-                "Something=\"Another Param\"",
                 "AnotherTest===Test",
                 "-t"
             };
@@ -118,7 +117,7 @@ namespace Testing
                 "Hello=World",
                 "-f",
                 "Environment=Development",
-                "Something=\"Another Param\"",
+                "Something=Another Param",
                 "AnotherTest===Test",
                 "-t"
             };
@@ -138,7 +137,6 @@ namespace Testing
                 "Hello=World",
                 "-f",
                 "Environment=Development",
-                "Something=\"Another Param\"",
                 "AnotherTest===Test",
                 "-t"
             };
@@ -286,11 +284,12 @@ namespace Testing
         [Fact]
         public void Args_string_constructor_should_poplate_the_args_dictionary()
         {
-            var args = new Args("Hello=World -f Environment=Development Something=\"Another Param\" -t");
+            var args = new Args("Hello=World -f Environment=Development Something=\"Another Param\" -t Something2=\"Hey\"");
 
             Assert.Equal(args["hello"], "World");
             Assert.True(args.HasFlag("t"));
             Assert.Equal(args["something"], "Another Param");
+            Assert.Equal(args["something2"], "Hey");
         }
     }
 }
