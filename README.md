@@ -2,7 +2,7 @@
 
 # Easy Args
 
-The lightest .Net utility for processing command line arguments
+The lightest .NET utility for processing command line arguments
 
 [![Build status](https://ci.appveyor.com/api/projects/status/w7vwd418k6ltur9k?svg=true)](https://ci.appveyor.com/project/masterjeef/easy-args)
 
