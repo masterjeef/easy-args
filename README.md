@@ -31,7 +31,9 @@ static void Main(string[] args)
 
 The number of arguments, and the order of the arguments does not matter. Also, accessing named arguments and flags is not case sensitive. The following would also work for the example above.
 
-      var email = easyArgs["email"];
+```csharp
+var email = easyArgs["email"];
+```
 
 ## Object Initialization Works Too
 
