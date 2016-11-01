@@ -18,14 +18,16 @@ Let's use the following command as an example. `Application` below would be the 
 
 In our application, we would use EasyArgs like the following :
 
-    static void Main(string[] args)
-    {
+```csharp
+static void Main(string[] args)
+{
 
-        var easyArgs = new Args(args);
+    var easyArgs = new Args(args);
 
-        var email = easyArgs["Email"];
+    var email = easyArgs["Email"];
 
-    }
+}
+```
 
 The number of arguments, and the order of the arguments does not matter. Also, accessing named arguments and flags is not case sensitive. The following would also work for the example above.
 
@@ -39,17 +41,19 @@ Another example using object Initialization :
 
 Within our application :
 
-    static void Main(string[] args)
+```csharp
+static void Main(string[] args)
+{
+
+    var easyArgs = new Args
     {
+        Arguments = args
+    };
 
-        var easyArgs = new Args
-        {
-            Arguments = args
-        };
+    var email = easyArgs["Username"];
 
-        var email = easyArgs["Username"];
-
-    }
+}
+```
 
 ## Flags
 
@@ -61,17 +65,19 @@ The `-d` flag can be placed anywhere in the command and must be prepended with `
 
 How to detect the presence of a flag in the code :
 
-    static void Main(string[] args)
+```csharp
+static void Main(string[] args)
+{
+
+    var easyArgs = new Args
     {
+        Arguments = args
+    };
 
-        var easyArgs = new Args
-        {
-            Arguments = args
-        };
+    var hasFlag = easyArgs.HasFlag("d");
 
-        var hasFlag = easyArgs.HasFlag("d");
-
-    }
+}
+```
 
 ## Handling Types
 
@@ -89,16 +95,18 @@ Another example :
 
 How to parse an integer :
 
-    static void Main(string[] args)
+```csharp
+static void Main(string[] args)
+{
+
+    var easyArgs = new Args
     {
+        Arguments = args
+    };
 
-        var easyArgs = new Args
-        {
-            Arguments = args
-        };
-
-        int kidneyCount = easyArgs["KidneyCount"];
-    }
+    int kidneyCount = easyArgs["KidneyCount"];
+}
+```
 
 EasyArgs utilizes implicit typing to parse the value to the requested type. If the string cannot be parsed to the requested type, then an exception will be thrown.
 
@@ -106,11 +114,13 @@ EasyArgs utilizes implicit typing to parse the value to the requested type. If t
 
 `Main(string[] args)` is not be the only place where we can use Easy Args. We can also do the following :
 
-    var command = "Hello=World -d KidneyCount=3 Username=Iateyourcookie Email=git@er.dun";
+```csharp
+var command = "Hello=World -d KidneyCount=3 Username=Iateyourcookie Email=git@er.dun";
 
-    var args = new Args(command);
+var args = new Args(command);
 
-    string username = args["Username"];
+string username = args["Username"];
+```
 
 ## Default Arguments
 
@@ -120,15 +130,17 @@ By default EasyArgs will return null or default for a missing argument, another 
 
 The default value can also be set like the following.
 
-    static void Main(string[] args)
-    {
+```csharp
+static void Main(string[] args)
+{
 
-        var easyArgs = new Args
-        {
-            Arguments = args,
-            Default = "default"
-        };
-        
-        // returns "default" in this case
-        var shouldBeDefault = easyArgs["GoodBye"];
-    }
+    var easyArgs = new Args
+    {
+        Arguments = args,
+        Default = "default"
+    };
+    
+    // returns "default" in this case
+    var shouldBeDefault = easyArgs["GoodBye"];
+}
+```
