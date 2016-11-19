@@ -85,11 +85,18 @@ static void Main(string[] args)
 
 Types currently supported :
 
-* int
+* byte/sbyte
+* int/uint
+* short/ushort
+* long/ulong
+* float
 * double
-* decimal
+* char
 * bool
+* string
+* decimal
 * DateTime
+* Guid
 
 Another example :
 
