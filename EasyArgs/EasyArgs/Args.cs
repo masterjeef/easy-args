@@ -9,7 +9,6 @@ namespace EasyArgs
 {
     public class Args
     {
-
         private const string flagsExpression = "\\s*-(?<flag>[^\\s]+)";
 
         private const string namedArgsExpression = "\\s*(?<name>[^\\s=]+)=((\"(?<valueQuoted>.*?)\")|(?<value>([^\\s]+)))";
@@ -31,8 +30,6 @@ namespace EasyArgs
         {
             ArgsString = args;
         }
-
-        public string Default { get; set; }
 
         public string [] Arguments
         {
@@ -59,7 +56,7 @@ namespace EasyArgs
                     return _namedArgs[name];
                 }
 
-                return new Argument { Name = name, Value = Default };
+                return new Argument { Name = name};
             }
         }
 
@@ -69,7 +66,6 @@ namespace EasyArgs
 
             var regex = new Regex(paramExpression);
 
-            // Surrounds named argument values with double quotes to preserve whitespace
             foreach (var arg in args)
             {
                 var match = regex.Match(arg);

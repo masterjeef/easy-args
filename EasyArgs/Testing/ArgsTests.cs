@@ -92,28 +92,6 @@ namespace Testing
         }
 
         [Fact]
-        public void Default_should_be_returned_when_the_argument_is_not_present()
-        {
-            var arguments = new[] {
-                "Hello=World",
-                "-f",
-                "Environment=Development",
-                "AnotherTest===Test",
-                "-t"
-            };
-
-            const string defaultArg = "default";
-
-            var args = new Args
-            {
-                Arguments = arguments,
-                Default = defaultArg
-            };
-
-            Assert.Equal(args["DoesNotExist"], defaultArg);
-        }
-
-        [Fact]
         public void Argument_parsing_should_handle_spaces()
         {
             var arguments = new[] {
