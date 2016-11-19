@@ -130,26 +130,3 @@ var args = new Args(command);
 
 string username = args["Username"];
 ```
-
-## Default Arguments
-
-By default EasyArgs will return null or default for a missing argument, another example.
-
-    Application Hello=World
-
-The default value can also be set like the following.
-
-```csharp
-static void Main(string[] args)
-{
-
-    var easyArgs = new Args
-    {
-        Arguments = args,
-        Default = "default"
-    };
-    
-    // returns "default" in this case
-    var shouldBeDefault = easyArgs["GoodBye"];
-}
-```
