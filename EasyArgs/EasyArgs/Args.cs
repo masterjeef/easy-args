@@ -69,7 +69,7 @@ namespace EasyArgs
 
             var regex = new Regex(paramExpression);
 
-            // Surrounds named argument values with double quotes in order to preserve whitespace
+            // Surrounds named argument values with double quotes to preserve whitespace
             foreach (var arg in args)
             {
                 var match = regex.Match(arg);
