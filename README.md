@@ -2,7 +2,7 @@
 
 # Easy Args
 
-The lightest .NET utility for processing command line arguments
+The lightest .NET utility for parsing command line arguments.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/w7vwd418k6ltur9k?svg=true)](https://ci.appveyor.com/project/masterjeef/easy-args)
 
@@ -117,11 +117,11 @@ static void Main(string[] args)
 }
 ```
 
-EasyArgs utilizes implicit typing to parse the value to the requested type. If the string cannot be parsed to the requested type, then an exception will be thrown.
+EasyArgs uses implicit casting to parse the value to the requested type. If the string cannot be parsed to the requested type, then an exception will be thrown.
 
 ## Beyond Main
 
-`Main(string[] args)` is not be the only place where we can use Easy Args. We can also do the following :
+`Main(string[] args)` is not the only place where Easy Args can be used. We can also do the following :
 
 ```csharp
 var command = "Hello=World -d KidneyCount=3 Username=Iateyourcookie Email=git@er.dun";
